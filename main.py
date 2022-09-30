@@ -47,7 +47,7 @@ if __name__ == "__main__":
 	)
 
 	X = np.random.randn(n_sample, n_features)
-	X[to_one] += 10
+	X[to_one] += 1
 	X = Tensor(X)
 
 	y_true = np.zeros((n_sample, 1))
@@ -89,8 +89,8 @@ if __name__ == "__main__":
 			epoch_loss += loss.data.item()
 
 		# pbar.set_postfix({"loss": round(epoch_loss/len(batchs), 3)})
-		
-	print(f"Loss = {loss.data.item():.2e}")
+	
+	print(f"Loss = {epoch_loss/bs:.2e}")
  
 	y_pred = sigmoid(model(X))
 	print("Accuracy =", ((y_true.data == 1) == (y_pred.data > 0.5)).mean())
